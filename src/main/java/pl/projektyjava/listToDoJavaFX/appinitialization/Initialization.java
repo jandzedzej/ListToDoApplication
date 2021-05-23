@@ -3,6 +3,7 @@ package pl.projektyjava.listToDoJavaFX.appinitialization;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -21,9 +22,9 @@ public class Initialization implements ApplicationListener<StarterClass.StageRea
     @Override
     public void onApplicationEvent(StarterClass.StageReadyEvent event) {
         Stage stage = event.getStage();
-        HBox mainPane= null;
+        StackPane mainPane= null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/addingWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
             fxmlLoader.setControllerFactory(applicationContext::getBean);
             mainPane = fxmlLoader.load();
         } catch (IOException e) {

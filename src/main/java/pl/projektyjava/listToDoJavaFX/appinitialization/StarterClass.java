@@ -34,7 +34,7 @@ public class StarterClass extends Application {
         Platform.exit();
     }
 
-    static class StageReadyEvent extends ApplicationEvent {
+    static public class StageReadyEvent extends ApplicationEvent {
         public StageReadyEvent (Stage stage){
             super(stage);
         }
