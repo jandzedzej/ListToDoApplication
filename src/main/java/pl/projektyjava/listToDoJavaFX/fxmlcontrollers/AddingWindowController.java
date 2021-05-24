@@ -24,12 +24,15 @@ import java.io.IOException;
 @Scope("prototype")
 public class AddingWindowController {
 
+    //CONNECT WITH DATABASE
     @Autowired
     TaskRepository taskRepository;
 
+    //ADDING FXML TO SPRING CONTEXT
     @Autowired
     ApplicationContext applicationContext;
 
+    //REFERENCE TO MAIN SCREEN
     MainScreenController mainScreenController;
 
     public void setMainScreenController(MainScreenController mainScreenController) {
@@ -53,14 +56,18 @@ public class AddingWindowController {
     @FXML
     private Slider priority;
 
+    //ADDING SCREEN ACTIONS
     public void initialize() {
-        addQuest.setOnAction(this::saveButtonAction);
+        addQuest.setOnAction(this::saveTask);
         listOfQuest.setOnAction(this::openLisOfQuests);
         title.addEventFilter(MouseEvent.MOUSE_CLICKED, this::emptyTitleCorrect);
-
         description.addEventFilter(KeyEvent.KEY_RELEASED, this::saveKeyAction);
     }
 
+    private void saveTask(ActionEvent event) {
+    }
+
+    //OPENING LIST WINDOW
     private void openLisOfQuests(ActionEvent event) {
         HBox hBox=null;
         FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/fxml/listWindow.fxml"));
@@ -75,6 +82,7 @@ public class AddingWindowController {
         mainScreenController.setScreen(hBox);
     }
 
+    //IF ENTER CLICKED SAVE TASK
     private void saveKeyAction(KeyEvent event) {
 
         String descriptionText = description.getText();
@@ -87,18 +95,19 @@ public class AddingWindowController {
 
     }
 
-
+    //CELAR WINDOW IF USER WANT TO WRITE TITLE
     private void emptyTitleCorrect(MouseEvent event) {
         if (incorrect) {
             title.clear();
             incorrect = false;
         }
     }
-
-    private void saveButtonAction(ActionEvent event) {
+    //SAVE TASK WHEN BUTTON CLICKED
+   private void saveButtonAction(ActionEvent event) {
         saveTask();
     }
 
+    //SAVING TASK ACTION
     private void saveTask() {
         String titleText = title.getText();
         String descriptionText = description.getText();

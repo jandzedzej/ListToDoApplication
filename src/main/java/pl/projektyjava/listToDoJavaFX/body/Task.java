@@ -22,6 +22,8 @@ public class Task {
         this.priority = priority;
     }
 
+
+
     public Task() {
     }
 
@@ -55,5 +57,15 @@ public class Task {
 
     public void setPriority(double priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                '}';
     }
 }

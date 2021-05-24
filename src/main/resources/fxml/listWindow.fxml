@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.projektyjava.listToDoJavaFX.fxmlcontrollers.ListWindowController">
    <children>
       <ListView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="427.0" HBox.hgrow="ALWAYS" />
@@ -14,6 +13,8 @@
             <Button fx:id="addingButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Dodaj " />
             <Button fx:id="removeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Usuń" />
             <Button fx:id="modifyButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modyfikuj" VBox.vgrow="ALWAYS" />
+            <Button fx:id="doneButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Zrobione!" />
+            <Button fx:id="storyButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Hisotria" />
          </children>
       </VBox>
    </children>

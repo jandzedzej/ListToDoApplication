@@ -19,6 +19,7 @@ import java.io.IOException;
 @Scope("prototype")
 public class MainScreenController {
 
+    //ADDING FXML TO SPRING CONTEXT
     @Autowired
     private ApplicationContext applicationContext ;
 
@@ -26,23 +27,26 @@ public class MainScreenController {
     private StackPane mainScreen;
 
 
-    public void initialize() throws IOException {
-
-
+    public void initialize() {
         loadAddingWindow();
-
     }
 
-    public void loadAddingWindow() throws IOException {
+    //LOADING ADDING WINDOW WHICH IS FIRST VIEW
+    public void loadAddingWindow()  {
         HBox hBox=null;
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/addingWindow.fxml"));
         loader.setControllerFactory(applicationContext::getBean);
-        hBox=loader.load();
+        try {
+            hBox=loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         AddingWindowController addingWindowController=loader.getController();
         addingWindowController.setMainScreenController(this);
         setScreen(hBox);
     }
 
+    //SET CURRENT SCREEN FOR USER
     public void setScreen(HBox hbox) {
         mainScreen.getChildren().clear();
         mainScreen.getChildren().add(hbox);
