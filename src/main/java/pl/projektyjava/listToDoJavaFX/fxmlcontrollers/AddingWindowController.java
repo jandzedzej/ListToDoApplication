@@ -70,6 +70,8 @@ public class AddingWindowController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ListWindowController listWindowController=fxmlLoader.getController();
+        listWindowController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(hBox);
     }
 

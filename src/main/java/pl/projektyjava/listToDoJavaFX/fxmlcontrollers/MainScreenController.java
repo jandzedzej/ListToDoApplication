@@ -29,6 +29,11 @@ public class MainScreenController {
     public void initialize() throws IOException {
 
 
+        loadAddingWindow();
+
+    }
+
+    public void loadAddingWindow() throws IOException {
         HBox hBox=null;
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/addingWindow.fxml"));
         loader.setControllerFactory(applicationContext::getBean);
@@ -36,7 +41,6 @@ public class MainScreenController {
         AddingWindowController addingWindowController=loader.getController();
         addingWindowController.setMainScreenController(this);
         setScreen(hBox);
-
     }
 
     public void setScreen(HBox hbox) {
