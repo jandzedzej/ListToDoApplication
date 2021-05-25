@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import pl.projektyjava.listToDoJavaFX.body.StoryTask;
+import pl.projektyjava.listToDoJavaFX.body.StoryTaskRepository;
 import pl.projektyjava.listToDoJavaFX.body.Task;
 import pl.projektyjava.listToDoJavaFX.body.TaskRepository;
 
@@ -29,6 +31,10 @@ public class ListWindowController {
     //CONNECT WITH DATABASE
     @Autowired
     TaskRepository taskRepository;
+
+    @Autowired
+    StoryTaskRepository storyTaskRepository;
+
 
     //ADDING FXML TO SPRING CONTEXT
     @Autowired
@@ -87,8 +93,19 @@ public class ListWindowController {
         });
         modifyButton.setOnAction(this::modifyFocusedCell);
         storyButton.setOnAction(this::openStoryWindow);
+        doneButton.setOnAction(this::addingDoneTasks);
     }
 
+    //ADD DONE TASK TO OTHER TABLE
+    private void addingDoneTasks(ActionEvent event) {
+        Task focusedItem = tableView.getFocusModel().getFocusedItem();
+        taskRepository.delete(focusedItem);
+        StoryTask storyTask=new StoryTask(focusedItem.getTitle(),focusedItem.getDescription(), focusedItem.getPriority());
+        storyTaskRepository.save(storyTask);
+        addingWindowController.openListOfQuest();
+    }
+
+    //OPENS STORY WINDOW LIST
     private void openStoryWindow(ActionEvent event) {
         HBox hBox=null;
         FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/fxml/storyWindow.fxml"));

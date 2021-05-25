@@ -32,6 +32,7 @@ public class Initialization implements ApplicationListener<StarterClass.StageRea
         }
         Scene scene=new Scene(mainPane);
         stage.setScene(scene);
+        stage.setTitle("To do application");
         stage.show();
     }
 }

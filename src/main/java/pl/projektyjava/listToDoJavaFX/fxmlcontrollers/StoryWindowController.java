@@ -8,6 +8,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import pl.projektyjava.listToDoJavaFX.body.StoryTask;
+import pl.projektyjava.listToDoJavaFX.body.StoryTaskRepository;
 import pl.projektyjava.listToDoJavaFX.body.Task;
 import pl.projektyjava.listToDoJavaFX.body.TaskRepository;
 
@@ -22,6 +24,9 @@ public class StoryWindowController {
     //CONNECT WITH DATABASE
     @Autowired
     TaskRepository taskRepository;
+
+    @Autowired
+    StoryTaskRepository storyTaskRepository;
 
     //REFERENCE TO ADDING SCREEN
     AddingWindowController addingWindowController;
@@ -38,16 +43,16 @@ public class StoryWindowController {
     }
 
     @FXML
-    private TableView<Task> tableView;
+    private TableView<StoryTask> tableView;
 
     @FXML
-    private TableColumn<Task, String> titleColumn;
+    private TableColumn<StoryTask, String> titleColumn;
 
     @FXML
-    private TableColumn<Task, String> descriptionColumn;
+    private TableColumn<StoryTask, String> descriptionColumn;
 
     @FXML
-    private TableColumn<Task, Double> priorityColumn;
+    private TableColumn<StoryTask, Double> priorityColumn;
 
     @FXML
     private Button addingButton;
@@ -56,26 +61,27 @@ public class StoryWindowController {
     private Button listButton;
 
     public void initialize(){
-//        showTasks();
+        showTasks();
         addingButton.setOnAction(t->mainScreenController.loadAddingWindow());
         listButton.setOnAction(t->addingWindowController.openListOfQuest());
     }
 
-//    private void showTasks() {
-//        List<Task> listOfTasks = new ArrayList<>();
-//        titleColumn.setCellValueFactory(new PropertyValueFactory<Task, String>("title"));
-//        descriptionColumn.setCellValueFactory(new PropertyValueFactory<Task, String>("description"));
-//        priorityColumn.setCellValueFactory(new PropertyValueFactory<Task, Double>("priority"));
-//        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-//        Iterable<Task> all = taskRepository.findAll();
-//        all.forEach(t -> listOfTasks.add(t));
-//        listOfTasks.sort(new Comparator<Task>() {
-//            @Override
-//            public int compare(Task o1, Task o2) {
-//                return -(int) (o1.getPriority() - o2.getPriority());
-//            }
-//        });
-//        listOfTasks.stream().forEach(t -> tableView.getItems().add(t));
-//    }
+    //SHOW STORY OF DONE TASKS
+    private void showTasks() {
+        List<StoryTask> listOfTasks = new ArrayList<>();
+        titleColumn.setCellValueFactory(new PropertyValueFactory<StoryTask, String>("title"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<StoryTask, String>("description"));
+        priorityColumn.setCellValueFactory(new PropertyValueFactory<StoryTask, Double>("priority"));
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        Iterable<StoryTask> all = storyTaskRepository.findAll();
+        all.forEach(t -> listOfTasks.add(t));
+        listOfTasks.sort(new Comparator<StoryTask>() {
+            @Override
+            public int compare(StoryTask o1, StoryTask o2) {
+                return -(int) (o1.getPriority() - o2.getPriority());
+            }
+        });
+        listOfTasks.stream().forEach(t -> tableView.getItems().add(t));
+    }
 
 }
