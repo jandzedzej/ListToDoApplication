@@ -39,6 +39,9 @@ public class AddingWindowController {
         this.mainScreenController = mainScreenController;
     }
 
+    ListWindowController listWindowController;
+
+
     private boolean incorrect;
 
     @FXML
@@ -58,17 +61,15 @@ public class AddingWindowController {
 
     //ADDING SCREEN ACTIONS
     public void initialize() {
-        addQuest.setOnAction(this::saveTask);
-        listOfQuest.setOnAction(this::openLisOfQuests);
+        addQuest.setOnAction(t->saveTask());
+        listOfQuest.setOnAction(t->openListOfQuest());
         title.addEventFilter(MouseEvent.MOUSE_CLICKED, this::emptyTitleCorrect);
         description.addEventFilter(KeyEvent.KEY_RELEASED, this::saveKeyAction);
     }
 
-    private void saveTask(ActionEvent event) {
-    }
 
     //OPENING LIST WINDOW
-    private void openLisOfQuests(ActionEvent event) {
+    public void openListOfQuest() {
         HBox hBox=null;
         FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("/fxml/listWindow.fxml"));
         fxmlLoader.setControllerFactory(applicationContext::getBean);
@@ -79,6 +80,7 @@ public class AddingWindowController {
         }
         ListWindowController listWindowController=fxmlLoader.getController();
         listWindowController.setMainScreenController(mainScreenController);
+        listWindowController.setAddingWindowController(this);
         mainScreenController.setScreen(hBox);
     }
 
