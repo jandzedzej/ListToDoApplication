@@ -4,6 +4,7 @@ Window ToDo application made using JavaFX and Spring Data (with MySQL)
 
 ## Table of contents
 * [General info](#general-info)
+* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 
@@ -13,6 +14,11 @@ It has 3 separate windows connects each other. Besides it is connected with MySQ
 remove and mark if it's done. Quests are sorted by priority on ready list. Done tasks are on another list. 
 User can modify task at any moment clicking modify button.
 	
+## Screenshots
+![Adding Window](./addingwindow.png)
+![List Window](./image.png)
+![Story Window](./storywindow.png)
+
 ## Technologies
 Project is created with:
 * Spring Boot
