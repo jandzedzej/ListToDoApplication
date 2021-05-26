@@ -16,7 +16,7 @@ User can modify task at any moment clicking modify button.
 	
 ## Screenshots
 ![Adding Window](./addingwindow.png)
-![List Window](./image.png)
+![List Window](./listwindow.png)
 ![Story Window](./storywindow.png)
 
 ## Technologies
